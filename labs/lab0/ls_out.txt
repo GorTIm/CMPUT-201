@@ -1,0 +1,6 @@
+total 5
+1 #ls_com.txt#
+1 ls_com.txt
+1 ls_out.tx
+1 ls_out.txt
+2 temp

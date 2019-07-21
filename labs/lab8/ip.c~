@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+
+float loan,int_rate,payment;
+int month;
+int findPayment(float lowbound,float upbound);
+
+int main(void){
+ 
+    printf("Enter the loan amount ($):");
+  scanf("%f",&loan);
+  printf("Enter the annual interest rate (%%):");
+ scanf("%f",&int_rate);
+ printf("Enter the number of months to pay back:");
+ scanf("%d",&month);
+ int_rate=1+(int_rate/1200);
+ payment=0;
+ findPayment(0,loan);
+ /*test*/
+printf("%f\n",payment);
+
+}
+
+int findPayment(float lowbound,float upbound){
+  float median,l,round_up,error;
+  int times=0;
+  median=(lowbound+upbound)/2;
+  l=loan;
+  while(l>0){
+    l=l*int_rate;
+    if(l<median){
+      error=median-1;
+    }
+    l=l-median;
+
+   
+    times+=1;
+  }
+  if(times==month&&error<=(month/100)){
+    payment=median;
+    return 0;
+  }
+  round_up=ceilf(median*100)/100;
+  if(times>month||error>(month/100)){
+    findPayment(round_up,upbound);
+    }else{
+    findPayment(lowbound,round_up);
+  }
+    
+    
+
+    
+  return 0;
+}
